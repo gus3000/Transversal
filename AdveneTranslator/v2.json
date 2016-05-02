@@ -1,0 +1,102 @@
+{ "annotations": [
+
+                {
+                        "id": "a27",
+                        "type": "Objets",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 0,
+                        "end": 148912,
+                        "content": "Box 1"
+                },
+
+                {
+                        "id": "a4",
+                        "type": "Activite",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 9509,
+                        "end": 148912,
+                        "content": "Box packing"
+                },
+
+                {
+                        "id": "a24",
+                        "type": "Geste",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 10219,
+                        "end": 11179,
+                        "content": "Walk"
+                },
+
+                {
+                        "id": "a13",
+                        "type": "Geste",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 11251,
+                        "end": 11351,
+                        "content": "Rest"
+                },
+
+                {
+                        "id": "a25",
+                        "type": "Action2",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 11351,
+                        "end": 13531,
+                        "content": "Prendre caisse"
+                },
+
+                {
+                        "id": "a14",
+                        "type": "Geste",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 13531,
+                        "end": 13631,
+                        "content": "Rest"
+                },
+
+                {
+                        "id": "a22",
+                        "type": "Geste",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 13639,
+                        "end": 18773,
+                        "content": "Walk"
+                },
+
+                {
+                        "id": "a15",
+                        "type": "Geste",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 18766,
+                        "end": 18866,
+                        "content": "Rest"
+                },
+
+                {
+                        "id": "a26",
+                        "type": "Action2",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 18881,
+                        "end": 22045,
+                        "content": "Place box"
+                },
+
+                {
+                        "id": "a16",
+                        "type": "Geste",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 22086,
+                        "end": 22186,
+                        "content": "Rest"
+                },
+
+                {
+                        "id": "a17",
+                        "type": "Geste",
+                        "media": "D%3A%5Cgus3000%5CStage%5CFirst%20test%5Cfirst_test.avi",
+                        "begin": 26386,
+                        "end": 26486,
+                        "content": "Rest"
+                }
+
+] }

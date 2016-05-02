@@ -1,0 +1,15 @@
+@prefix : <http://liris.cnrs.fr/silex/2009/ktbs#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<.> :contains <model1> .
+
+<model1> a :TraceModel ;
+    :hasUnit :millisecond .
+
+<#Annotation> a :ObselType .
+
+<#content> a :AttributeType ;
+    skos:prefLabel "content" ;
+    :hasAttributeDomain <#Annotation> ;
+    :hasAttributeRange xsd:string .
