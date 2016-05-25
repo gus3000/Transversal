@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Transversal-git/.idea/Transversal.iml" filepath="$PROJECT_DIR$/../Transversal-git/.idea/Transversal.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../pythonTests/.idea/pythonTests.iml" filepath="$PROJECT_DIR$/../pythonTests/.idea/pythonTests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Transversal.iml" filepath="$PROJECT_DIR$/.idea/Transversal.iml" />
     </modules>
   </component>
 </project>

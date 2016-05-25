@@ -1,6 +1,6 @@
 import json
-from ktbs_obj import Base, StoredTrace
 from collections import OrderedDict
+from AdveneTranslator.ktbs_obj import StoredTrace, Base
 
 
 def extract_keys(obsels, keys):
@@ -18,17 +18,16 @@ def extract_keys(obsels, keys):
 
     return d
 
-
-b = Base("base1/", "test python base")
+root_url = "http://192.168.1.197:8001/"
+b = Base("base1/", root_url, "test python base")
 # b.delete()
 b.recreate()
 
-t = StoredTrace("t01/", "http://192.168.1.130:8001/base1/model1/", b)
+t = StoredTrace("observations/", root_url + "base1/model1/", b)
 print(json.dumps(t.to_json(), indent=4, separators=[',', ': ']))
-t.send()
+t.send(root_url)
 
-with open('v2.json', 'r') as f1:
-    with open('trace.json', 'w') as f2:
+with open('v2.json', 'r') as f1, open('trace.json', 'w') as f2:
         tab = json.load(f1)
         # print(tab)
         for obs in tab['annotations']:
