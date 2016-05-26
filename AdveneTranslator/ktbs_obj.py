@@ -101,6 +101,6 @@ class Obsel:
         self.type = type
 
     def __str__(self):
-        return "{id: "+ self.id +", start:"+ self.start +", end:"+ self.end +", type:\""+ self.type +"\"}"
+        return "{id: "+ self.id +", start:"+ str(self.start) +", end:"+ str(self.end) +", type:\""+ self.type +"\"}"
 
 #requests.post("http://192.168.1.130:8001/base1/t01/", json={"@id": "obs1", "@type": "m:SimpleObsel"})

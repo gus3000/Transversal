@@ -1,6 +1,12 @@
 from AdveneTranslator.ktbs_obj import Obsel
 from xml.etree import ElementTree
 
+class Relation(Obsel):
+    def __init__(self, obs1:Obsel, obs2:Obsel): #une relation pourrait avoir une durée ?
+        this.id = obs1.id + "->"+ obs2.id
+        start = min(obs1.start, obs2.start)
+        end = max(obs1.end, obs2.end)
+
 
 def handle_advene_xml(file="first_test.xml"):
     ns = {"m": "http://experience.univ-lyon1.fr/advene/ns"}
@@ -22,6 +28,7 @@ def handle_advene_xml(file="first_test.xml"):
             print(o)
             annotations.append(o)
         elif a.tag.endswith("relation"):
-            pass
+
+
 
 handle_advene_xml()
