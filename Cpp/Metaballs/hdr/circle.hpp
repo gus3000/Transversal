@@ -21,6 +21,6 @@ struct Circle
   bool onCircle(int,int) const;
   static bool inCircles(int,int);
   static bool inBlob(int,int);
-  static float inBlobFloGallin(int,int);
+  static float inBlobFloGallin(int,int,vector<Circle>& circles);
 };
 #endif

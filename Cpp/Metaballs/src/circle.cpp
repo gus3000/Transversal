@@ -58,10 +58,10 @@ bool Circle::inBlob(int x, int y)
   //return sum;
 }
 
-float Circle::inBlobFloGallin(int x, int y)
+float Circle::inBlobFloGallin(int x, int y, vector<Circle>& circles)
 {
   float sum = 0;
-  for(auto const& circle: Circle::allCircles)
+  for(auto const& circle: circles)
     {
       int dx = x - circle.x;
       int dy = y - circle.y;

@@ -1,11 +1,22 @@
 #include <experimental/random>
 #include <opencv2/opencv.hpp>
+#include <fstream>
+#include <iostream>
 
 #include "circle.hpp"
+#include "utils.hpp"
+
+#define DEFAULT_RADIUS 20
 
 using cv::Mat;
 using cv::Vec3b;
+
+using std::cout;
+using std::endl;
 using std::vector;
+using std::map;
+using std::string;
+using std::ifstream;
 
 void fillRandom(Mat &m)
 {
@@ -37,7 +48,7 @@ void addRandomCircles(int width, int height, int amount)
     }
 }
 
-void showCircles(int width, int height)
+void showCircles(int width, int height,vector<Circle> &circles)
 {
   Mat m = Mat::zeros(width,height, CV_8UC3);
 
@@ -54,7 +65,7 @@ void showCircles(int width, int height)
     {
       for(int j=0; j<nCols; ++j)
 	{
-	  float blobiness = Circle::inBlobFloGallin(j,i);
+	  float blobiness = Circle::inBlobFloGallin(j,i,circles);
 	  Vec3b green(0, blobiness * 255,0);
 	  m.at<Vec3b>(i,j) = green;
 	  if(blobiness * 255 < 10 && blobiness * 255 > 0)
@@ -79,6 +90,28 @@ void initDirections()
       Point p(x/2,y/2);
       Circle::directions[i] = p;
     }
+}
+
+map<int,vector<Circle>> circlesFromCSV(string filepath)
+{
+  map<int,vector<Circle>> circles;
+  ifstream infile(filepath, ifstream::in);
+  int frame,x,y;
+  char comma;
+
+  while(infile >> frame >> comma >> x >> comma >> y)
+    {
+      //cout << frame << "," << x << "," << y << std::endl;
+      circles[frame].push_back(Circle(x,y,DEFAULT_RADIUS));
+    }
+  
+
+  return circles;
+}
+
+void updateObjects(int frame, map<int,vector<Circle>>& data, vector<Circle>& objects)
+{
+  //TODO
 }
 
 void move(int width, int height)
