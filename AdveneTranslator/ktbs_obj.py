@@ -94,13 +94,14 @@ class StoredTrace:
 
 #TODO intégrer ça au reste
 class Obsel:
-    def __init__(self,id:str,start:int,end:int,type:str):
+    def __init__(self,id:str,type:str,start:int,end:int,content:str=""):
         self.id = id
         self.start = start
         self.end = end
         self.type = type
+        self.content = content
 
     def __str__(self):
-        return "{id: "+ self.id +", start:"+ str(self.start) +", end:"+ str(self.end) +", type:\""+ self.type +"\"}"
+        return '{"@id": "'+ self.id +'", "@type":"'+ self.type +'", "start":'+ str(self.start) +', "end":'+ str(self.end) +', "m:content":"'+ self.content +'"}'
 
 #requests.post("http://192.168.1.130:8001/base1/t01/", json={"@id": "obs1", "@type": "m:SimpleObsel"})

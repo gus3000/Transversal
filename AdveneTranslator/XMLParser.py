@@ -24,10 +24,15 @@ def handle_advene_xml(file="first_test.xml"):
     for a in annotationsNode:
         if a.tag.endswith("annotation"):
             #print(a[0].get("begin"))
-            o = Obsel(a.get("id"), a[0].get("begin"), a[0].get("end"), a[1].text)
+            id = a.get("id")
+            begin = a[0].get("begin")
+            end = a[0].get("end")
+            type = a.get("type") #pas ça
+            content = a[1].text
+            o = Obsel(id, type, begin, end, content)
             print(o)
             annotations.append(o)
-        elif a.tag.endswith("relation"):
+        #elif a.tag.endswith("relation"):
 
 
 

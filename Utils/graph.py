@@ -3,7 +3,6 @@ from graphviz import Digraph
 class Graph:
     def __init__(self, name: str = ''):
         """
-
         :type name: str
         """
         assert isinstance(name, str)
