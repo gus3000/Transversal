@@ -63,3 +63,7 @@ target/
 
 #emacs temp files
 *~
+
+# CPP
+# object files
+*.o
