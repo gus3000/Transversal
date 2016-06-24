@@ -1,5 +1,0 @@
-digraph coucou {
-	A [label=Start]
-	B [label=End]
-		A -> B
-}
