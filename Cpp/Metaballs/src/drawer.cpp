@@ -48,10 +48,8 @@ void addRandomCircles(int width, int height, int amount)
     }
 }
 
-void showCircles(int width, int height,vector<Circle> &circles)
+void showCircles(int width, int height,vector<Circle>& circles, Mat& m)
 {
-  Mat m = Mat::zeros(width,height, CV_8UC3);
-
   //fillRandom(m);
   
   int nRows = m.rows;
@@ -61,13 +59,17 @@ void showCircles(int width, int height,vector<Circle> &circles)
   Vec3b redPixel(0,0,255);
   
   uchar *p;
+  const float threshold = 0.1f;
   for(int i=0; i<nRows; ++i)
     {
       for(int j=0; j<nCols; ++j)
 	{
-	  float blobiness = Circle::inBlobFloGallin(j,i,circles);
-	  Vec3b green(0, blobiness * 255,0);
-	  m.at<Vec3b>(i,j) = green;
+	  float blobiness = Circle::inBlobFloGallin(j,i,circles,true);
+	  if(blobiness > threshold)
+	  {
+	    Vec3b green(0, blobiness * 255,0);
+	    m.at<Vec3b>(i,j) = green;
+	  }
 	  if(blobiness * 255 < 10 && blobiness * 255 > 0)
 	    m.at<Vec3b>(i,j) = redPixel;
 	}
@@ -92,26 +94,46 @@ void initDirections()
     }
 }
 
-map<int,vector<Circle>> circlesFromCSV(string filepath)
+map<int,map<int,Circle>> circlesFromCSV(string filepath)
 {
-  map<int,vector<Circle>> circles;
+  map<int,map<int,Circle>> circles;
   ifstream infile(filepath, ifstream::in);
-  int frame,x,y;
+  int frame,x,y,indice;
   char comma;
 
-  while(infile >> frame >> comma >> x >> comma >> y)
+  while(infile >> frame >> comma >> indice >> comma >> x >> comma >> y)
     {
       //cout << frame << "," << x << "," << y << std::endl;
-      circles[frame].push_back(Circle(x,y,DEFAULT_RADIUS));
+      circles[frame].insert(std::pair<int,Circle>(indice,Circle(x,y,DEFAULT_RADIUS)));
     }
-  
+
+  for(auto it1 = circles.begin(); it1 != circles.end(); ++it1)
+    {
+      auto second = it1->second;
+      cout << "[" << it1->first << "]" << endl;
+      for(auto it2 = second.begin(); it2 != second.end(); ++it2)
+	{
+	  cout << it2->second << endl;
+	}
+    }
 
   return circles;
 }
 
-void updateObjects(int frame, map<int,vector<Circle>>& data, vector<Circle>& objects)
+void updateObjects(int frame, map<int,map<int,Circle>>& data, vector<Circle>& objects)
 {
-  //TODO
+  int len = objects.size();
+  for(int i=0; i<len; ++i)
+    {
+      auto elem = data[frame].find(i); //lourd non ?
+      if(elem != data[frame].end())
+	{
+	  //cout << "found" << endl;
+	  //objects[i] = elem->second;
+	  objects[i].updatePosition(elem->second);
+	}
+      objects[i].updateTimeStill();
+    }
 }
 
 void move(int width, int height)

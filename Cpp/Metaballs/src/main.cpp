@@ -17,6 +17,8 @@ using cv::Mat;
 
 using std::map;
 
+#define MAX_OBJECTS 9
+
 int main(int argc, char *argv[])
 {
   const int width = 500;
@@ -28,7 +30,12 @@ int main(int argc, char *argv[])
   // Circle::allCircles.push_back(Circle(30,450,10));
 
   //initDirections();
-
+  if(argc < 3)
+    {
+      std::cout << "usage : "<< argv[0] << " video.avi circles.csv [visualization]" << std::endl;
+      return 0;
+    }
+  
   //init video
   VideoCapture capture(argv[1]);
   if(!capture.isOpened())
@@ -38,21 +45,33 @@ int main(int argc, char *argv[])
     }
 
   vector<Circle> objects;
+  for(int i=0; i<MAX_OBJECTS; ++i)
+    objects.push_back(Circle(-100,-100,20));
 
   Mat currentFrame;
   int frameIndex = 0;
   //init circles
-  map<int,vector<Circle>> data = circlesFromCSV(argv[2]);
+  map<int,map<int,Circle>> data = circlesFromCSV(argv[2]);
+
+  bool visualization = argc>3;
+  std::cout << "Starting " << (visualization ? "with" : "without") << " viz" << std::endl;
   
   while(cv::waitKey(16) == -1) //tant qu'on appuie sur rien
     {
       updateObjects(frameIndex,data,objects);
       capture >> currentFrame;
       //imshow("test",currentFrame);
-      showCircles(width,height,objects);
+      if(visualization)
+	showCircles(width,height,objects,currentFrame);
+      else
+	{
+	  
+	}
       //move(width,height);
-      
+
+      std::cout << frameIndex << std::endl;
       ++frameIndex;
+      //frameIndex = 560;
     }
   
   return 0;

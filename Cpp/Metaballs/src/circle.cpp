@@ -58,11 +58,13 @@ bool Circle::inBlob(int x, int y)
   //return sum;
 }
 
-float Circle::inBlobFloGallin(int x, int y, vector<Circle>& circles)
+float Circle::inBlobFloGallin(int x, int y, vector<Circle>& circles, bool mustBeStill)
 {
   float sum = 0;
   for(auto const& circle: circles)
     {
+      if(mustBeStill && !circle.hasStayedStill())
+	continue;
       int dx = x - circle.x;
       int dy = y - circle.y;
       //std::cout << circle.x << "," << circle.y << std::endl;
@@ -85,4 +87,10 @@ float Circle::inBlobFloGallin(int x, int y, vector<Circle>& circles)
   if(sum < 0)
     return 0;
   return sum;
+}
+
+std::ostream& operator<<(std::ostream& o,const Circle& c)
+{
+  o << c.x << "," << c.y << " (" << c.radius << ")";
+  return o;
 }
