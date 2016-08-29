@@ -2,8 +2,10 @@
 #include <cstdlib>
 #include <vector>
 #include <map>
+#include <cstdlib>
+#include <ctime>
 
-#include <experimental/random>
+//#include <experimental/random>
 
 #include <opencv2/opencv.hpp>
 
@@ -21,6 +23,8 @@ using std::map;
 
 int main(int argc, char *argv[])
 {
+  std::srand(std::time(0));
+
   const int width = 500;
   const int height = 500;
 

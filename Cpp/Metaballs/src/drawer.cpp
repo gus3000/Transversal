@@ -1,7 +1,9 @@
-#include <experimental/random>
+//#include <experimental/random>
 #include <opencv2/opencv.hpp>
 #include <fstream>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 #include "circle.hpp"
 #include "utils.hpp"
@@ -31,7 +33,7 @@ void fillRandom(Mat &m)
       p = m.ptr<uchar>(i);
       for(int j=0; j<nCols; ++j)
 	{
-	  p[j] = std::experimental::randint(0,255);
+	  p[j] = std::rand() % 256;//std::experimental::randint(0,255);
 	}
     }
 }
@@ -40,9 +42,9 @@ void addRandomCircles(int width, int height, int amount)
 {
   for(int i=0; i<amount; ++i)
     {
-      int r = std::experimental::randint(1,100);
-      int x = std::experimental::randint(r,width-r);
-      int y = std::experimental::randint(r,height-r);
+      int r = std::rand() % 100 + 1;//std::experimental::randint(1,100);
+      int x = std::rand() % (width - 2*r) + r;//std::experimental::randint(r,width-r);
+      int y = std::rand() % (height - 2*r) + r;//std::experimental::randint(r,height-r);
       
       Circle::allCircles.push_back(Circle(x,y,r));
     }
@@ -85,7 +87,7 @@ void initDirections()
   Circle::directions = vector<Point>(nbCircles);
   for(int i=0; i<nbCircles; ++i)
   {
-      int xy = std::experimental::randint(1,100); //comme ça on évite d'avoir x=0 && y=0
+    int xy = std::rand() % 100 + 1;//std::experimental::randint(1,100); //comme ça on évite d'avoir x=0 && y=0
       int x = xy % 10;
       int y = xy / 10;
       
